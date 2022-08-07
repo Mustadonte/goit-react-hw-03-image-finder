@@ -5,11 +5,7 @@ export const ImageGallery = ({ images }) => {
   return (
     <ImgaeGalleryList>
       {images.map(({ id, largeImageURL }) => {
-        return (
-          <li key={id}>
-            <img src={largeImageURL} alt="img" />
-          </li>
-        );
+        return <ImageGalleryListItem key={id} largeImageURL={largeImageURL} />;
       })}
     </ImgaeGalleryList>
   );
