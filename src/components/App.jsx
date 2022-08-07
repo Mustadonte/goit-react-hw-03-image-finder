@@ -28,18 +28,6 @@ export class App extends Component {
     return (
       <>
         <SearchBar onSubmit={this.onSubmit} />
-
-        <ToastContainer
-          position="top-center"
-          autoClose={1500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         <ImageGallery images={this.state.images} />
       </>
     );
