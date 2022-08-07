@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 import { SearchBar } from './SearchBar/SearchBar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { apiService } from 'services/apiService';
