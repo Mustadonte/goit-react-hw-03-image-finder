@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import {
   SearchBarWrapper,
@@ -10,6 +11,7 @@ import { BiSearch } from 'react-icons/bi';
 export class SearchBar extends Component {
   state = {
     query: '',
+    images: [],
   };
 
   handleChange = e => {
@@ -17,7 +19,7 @@ export class SearchBar extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.query);
+    this.props.onSubmit(this.state.query.trim());
   };
 
   render() {
@@ -40,3 +42,7 @@ export class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
