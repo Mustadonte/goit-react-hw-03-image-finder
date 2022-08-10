@@ -21,10 +21,6 @@ export class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { query, perPage, page } = this.state;
 
-    if (this.state.query === '') {
-      return;
-    }
-
     if (prevState.query !== this.state.query) {
       this.setState({ images: [], loading: true, page: 1 });
       apiService(query, perPage, page)

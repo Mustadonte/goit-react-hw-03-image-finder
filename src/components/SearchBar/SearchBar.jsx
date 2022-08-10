@@ -7,6 +7,7 @@ import {
   SearchFormInput,
 } from './SearchBar.styled';
 import { BiSearch } from 'react-icons/bi';
+import { toast } from 'react-toastify';
 
 export class SearchBar extends Component {
   static propTypes = {
@@ -21,7 +22,11 @@ export class SearchBar extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.query.trim());
+    if (this.state.query === '') {
+      toast.warn('Введіть запит');
+      return;
+    }
+    this.props.onSubmit(this.state.query);
   };
 
   render() {
@@ -36,7 +41,7 @@ export class SearchBar extends Component {
             autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.query}
+            value={this.state.query.trim()}
             onChange={this.handleChange}
           />
         </SearchBarForm>
