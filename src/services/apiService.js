@@ -18,6 +18,15 @@ export const apiService = async (query, perPage, page) => {
       toast.error('There is no result');
       return [];
     }
-    return response.data.hits;
+
+    const result = response.data.hits.map(
+      ({ id, largeImageURL, webformatURL, tags }) => ({
+        id: id,
+        largeImageURL: largeImageURL,
+        webformatURL: webformatURL,
+        tags: tags,
+      })
+    );
+    return result;
   } catch (error) {}
 };

@@ -4,7 +4,7 @@ import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
 export const ImageGallery = ({ images }) => {
   return (
-    <ImgaeGalleryList o>
+    <ImgaeGalleryList>
       {images.map(({ id, largeImageURL, webformatURL, tags }) => {
         return (
           <ImageGalleryItem

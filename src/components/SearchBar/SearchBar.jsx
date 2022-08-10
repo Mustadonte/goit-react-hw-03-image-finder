@@ -11,7 +11,6 @@ import { BiSearch } from 'react-icons/bi';
 export class SearchBar extends Component {
   state = {
     query: '',
-    images: [],
   };
 
   handleChange = e => {

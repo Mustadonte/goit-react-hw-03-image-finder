@@ -23,7 +23,7 @@ export class App extends Component {
     }
 
     if (prevState.query !== this.state.query) {
-      this.setState({ images: [], loading: true });
+      this.setState({ images: [], loading: true, page: 1 });
       apiService(query, perPage, page)
         .then(images => this.setState({ images: [...images] }))
         .finally(() => this.setState({ loading: false }));
@@ -49,7 +49,6 @@ export class App extends Component {
   onLoadMoreButtonClick = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
-      loading: true,
     }));
   };
 
@@ -57,8 +56,11 @@ export class App extends Component {
     return (
       <>
         <SearchBar onSubmit={this.onSubmit} />
+
+        {this.state.images.length > 0 && (
+          <ImageGallery images={this.state.images} />
+        )}
         {this.state.loading && <Loader />}
-        <ImageGallery images={this.state.images} />
         {this.state.images.length > 0 ? (
           <LoadMoreButton onClick={this.onLoadMoreButtonClick} />
         ) : (
