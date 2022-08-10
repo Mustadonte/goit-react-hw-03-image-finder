@@ -5,6 +5,7 @@ import { apiService } from 'services/apiService';
 import { Loader } from './Loader/Loader';
 import { LoadMoreButton } from './LoadMoreButton/LoadMoreButton';
 import { ToastContainer } from 'react-toastify';
+import { Modal } from 'components/Modal/Modal';
 import 'react-toastify/dist/ReactToastify.css';
 export class App extends Component {
   state = {
@@ -13,6 +14,8 @@ export class App extends Component {
     page: 1,
     perPage: '12',
     loading: false,
+    modalImg: {},
+    showModal: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -52,13 +55,23 @@ export class App extends Component {
     }));
   };
 
+  onImgClick = clickedImg => {
+    this.setState({ modalImg: clickedImg });
+    this.toggleModal();
+  };
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
   render() {
     return (
       <>
         <SearchBar onSubmit={this.onSubmit} />
-
         {this.state.images.length > 0 && (
-          <ImageGallery images={this.state.images} />
+          <ImageGallery images={this.state.images} data={this.onImgClick} />
         )}
         {this.state.loading && <Loader />}
         {this.state.images.length > 0 ? (
@@ -66,6 +79,13 @@ export class App extends Component {
         ) : (
           ''
         )}
+
+        {this.state.showModal && (
+          <Modal onClose={this.toggleModal}>
+            <img src={this.state.modalImg.src} alt={this.props.tags} />
+          </Modal>
+        )}
+
         <ToastContainer
           position="top-center"
           autoClose={1500}
